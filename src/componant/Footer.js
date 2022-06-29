@@ -4,13 +4,13 @@ import logo from '../logo.svg';
 export default function Footer(props) {
 	return (
 		<footer className="text-gray-600 bg-black body-font">
-			<div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
-				<div className="flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center">
+			<div className="container px-5 py-24 mx-auto flex items-center md:flex-row md:flex-nowrap flex-wrap flex-col">
+				<div className="flex-grow flex flex-wrap md:text-left text-center">
 					<div className="lg:w-1/4 md:w-1/2 w-full px-4">
 						<h2 className="title-font font-medium text-blue-700 dark:text-cyan-700 tracking-widest text-sm mb-3">
 							CATEGORIES
 						</h2>
-						<nav className="list-none mb-10">
+						<nav className="list-none mb-10 lg:m-0">
 							<li>
 								<a className="text-gray-600 hover:text-gray-800">
 									First Link
@@ -37,7 +37,7 @@ export default function Footer(props) {
 						<h2 className="title-font font-medium text-blue-700 dark:text-cyan-700 tracking-widest text-sm mb-3">
 							CATEGORIES
 						</h2>
-						<nav className="list-none mb-10">
+						<nav className="list-none mb-10 lg:m-0">
 							<li>
 								<a className="text-gray-600 hover:text-gray-800">
 									First Link
@@ -64,7 +64,7 @@ export default function Footer(props) {
 						<h2 className="title-font font-medium text-blue-700 dark:text-cyan-700 tracking-widest text-sm mb-3">
 							CATEGORIES
 						</h2>
-						<nav className="list-none mb-10">
+						<nav className="list-none mb-10 lg:m-0">
 							<li>
 								<a className="text-gray-600 hover:text-gray-800">
 									First Link
@@ -91,7 +91,7 @@ export default function Footer(props) {
 						<h2 className="title-font font-medium text-blue-700 dark:text-cyan-700 tracking-widest text-sm mb-3">
 							CATEGORIES
 						</h2>
-						<nav className="list-none mb-10">
+						<nav className="list-none mb-10 lg:m-0">
 							<li>
 								<a className="text-gray-600 hover:text-gray-800">
 									First Link
@@ -114,8 +114,9 @@ export default function Footer(props) {
 							</li>
 						</nav>
 					</div>
+					{/* company info */}
 				</div>
-				<div className="flex flex-col items-center justify-start flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
+				<div className="flex flex-col items-center justify-center">
 					<a className="flex items-center justify-center title-font font-medium text-blue-700 dark:text-cyan-700 md-5">
 						<img src={logo} className="w-10" alt="News" />
 						<span className="ml-3 text-xl">{props.title}</span>

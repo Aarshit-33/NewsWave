@@ -6,10 +6,41 @@ import { Link, NavLink } from 'react-router-dom';
 export default function Navbar(props) {
 	const themeToggle = () => {
 		document.documentElement.classList.toggle('dark');
+		localStorage.setItem(
+			'theme',
+			document.documentElement.classList.contains('dark')
+				? 'dark'
+				: 'light',
+		);
 	};
+
+	const userTheme = localStorage.getItem('theme');
+	const systemTheme = window.matchMedia(
+		'(prefers-color-scheme: dark)',
+	).matches;
+	console.log(userTheme, systemTheme);
+
+	const checkTheme = () => {
+		if (userTheme === 'light') {
+			if (document.documentElement.classList.contains('dark')) {
+				document.documentElement.classList.remove('dark');
+			}
+
+			localStorage.setItem('theme', userTheme);
+			console.log('userTheme');
+		} else if (userTheme === 'dark' || systemTheme) {
+			if (!document.documentElement.classList.contains('dark')) {
+				document.documentElement.classList.add('dark');
+			}
+			console.log('systemTheme');
+			localStorage.setItem('theme', 'dark');
+		}
+	};
+
+	checkTheme();
 	return (
 		<nav className="fixed w-screen bg-slate-200 bg-opacity-95 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800 dark:bg-opacity-95 z-10">
-			<div className="container flex flex-wrap justify-between items-center mx-auto">
+			<div className="container flex justify-between items-center mx-auto">
 				{/* logo */}
 				<Link to="/" className="flex items-center">
 					<img
@@ -21,48 +52,11 @@ export default function Navbar(props) {
 						{props.title}
 					</span>
 				</Link>
-				{/* navbar menu  */}
-				<div
-					className="hidden justify-between items-center w-full md:flex md:w-auto"
-					id="mobile-menu-2">
-					<ul className="flex flex-col items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-						<li className="">
-							<NavLink
-								exact="true"
-								to="/"
-								className={({ isActive }) =>
-									isActive ? 'active-link' : 'default-link'
-								}>
-								Home
-							</NavLink>
-						</li>
-						<li className="">
-							<NavLink
-								exact="true"
-								to="/about"
-								className={({ isActive }) =>
-									isActive ? 'active-link' : 'default-link'
-								}>
-								About
-							</NavLink>
-						</li>
-						<li className="">
-							<NavLink
-								exact="true"
-								to="/contact"
-								className={({ isActive }) =>
-									isActive ? 'active-link' : 'default-link'
-								}>
-								Contact
-							</NavLink>
-						</li>
-					</ul>
-				</div>
-				{/*  <!-- Dropdown menu --> */}
-				<div className="flex items-center ">
+				<div className="">
+					{/* navbar menu  */}
 					<div
-						className="hidden z-50 my-4 md:hidden text-base list-none bg-transparent rounded dark:bg-transparent"
-						id="dropdown">
+						className="hidden justify-between items-center w-full md:flex md:w-auto"
+						id="mobile-menu-2">
 						<ul className="flex flex-col items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
 							<li className="">
 								<NavLink
@@ -72,12 +66,7 @@ export default function Navbar(props) {
 										isActive
 											? 'active-link'
 											: 'default-link'
-									}
-									onClick={() => {
-										document
-											.getElementById('dropdown')
-											.classList.toggle('hidden');
-									}}>
+									}>
 									Home
 								</NavLink>
 							</li>
@@ -89,12 +78,7 @@ export default function Navbar(props) {
 										isActive
 											? 'active-link'
 											: 'default-link'
-									}
-									onClick={() => {
-										document
-											.getElementById('dropdown')
-											.classList.toggle('hidden');
-									}}>
+									}>
 									About
 								</NavLink>
 							</li>
@@ -106,21 +90,78 @@ export default function Navbar(props) {
 										isActive
 											? 'active-link'
 											: 'default-link'
-									}
-									onClick={() => {
-										document
-											.getElementById('dropdown')
-											.classList.toggle('hidden');
-									}}>
+									}>
 									Contact
 								</NavLink>
 							</li>
 						</ul>
 					</div>
+
+					{/*  <!-- Dropdown menu --> */}
+					<div className="flex items-center">
+						<div
+							className="hidden z-50 my-4 md:hidden text-base list-none bg-transparent rounded dark:bg-transparent"
+							id="dropdown">
+							<ul className="flex flex-col items-center mt-4 md:flex-row md:mt-0 md:text-sm md:font-medium">
+								<li className="">
+									<NavLink
+										exact="true"
+										to="/"
+										className={({ isActive }) =>
+											isActive
+												? 'active-link'
+												: 'default-link'
+										}
+										onClick={() => {
+											document
+												.getElementById('dropdown')
+												.classList.toggle('hidden');
+										}}>
+										Home
+									</NavLink>
+								</li>
+								<li className="">
+									<NavLink
+										exact="true"
+										to="/about"
+										className={({ isActive }) =>
+											isActive
+												? 'active-link'
+												: 'default-link'
+										}
+										onClick={() => {
+											document
+												.getElementById('dropdown')
+												.classList.toggle('hidden');
+										}}>
+										About
+									</NavLink>
+								</li>
+								<li className="">
+									<NavLink
+										exact="true"
+										to="/contact"
+										className={({ isActive }) =>
+											isActive
+												? 'active-link'
+												: 'default-link'
+										}
+										onClick={() => {
+											document
+												.getElementById('dropdown')
+												.classList.toggle('hidden');
+										}}>
+										Contact
+									</NavLink>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				{/* theme toggle button and mobile menu toggle */}
-				<div className="">
-					<button
+				<div className="pl-[10px]"></div>
+				<div className="flex justify-center items-center">
+					{/* <button
 						type="button"
 						className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
 						onClick={themeToggle}>
@@ -158,6 +199,24 @@ export default function Navbar(props) {
 								d="M17 3a1 1 0 0 1 1 1 2 2 0 0 0 2 2 1 1 0 1 1 0 2 2 2 0 0 0-2 2 1 1 0 1 1-2 0 2 2 0 0 0-2-2 1 1 0 1 1 0-2 2 2 0 0 0 2-2 1 1 0 0 1 1-1Z"
 								className="fill-sky-500"></path>
 						</svg>
+					</button> */}
+					<button
+						className="flex items-center px-[6px] cursor-pointer w-[50px] h-8 bg-zinc-500 dark:bg-sky-800 rounded-full outline-none"
+						onClick={themeToggle}>
+						<span className="w-5 h-5 rounded-full flex items-center justify-center bg-white transition-all text-body-color dark:translate-x-[18px]">
+							<svg
+								viewBox="0 0 16 16"
+								className="dark:hidden fill-current w-[14px] h-[14px]">
+								<path d="M4.50663 3.2267L3.30663 2.03337L2.36663 2.97337L3.55996 4.1667L4.50663 3.2267ZM2.66663 7.00003H0.666626V8.33337H2.66663V7.00003ZM8.66663 0.366699H7.33329V2.33337H8.66663V0.366699V0.366699ZM13.6333 2.97337L12.6933 2.03337L11.5 3.2267L12.44 4.1667L13.6333 2.97337ZM11.4933 12.1067L12.6866 13.3067L13.6266 12.3667L12.4266 11.1734L11.4933 12.1067ZM13.3333 7.00003V8.33337H15.3333V7.00003H13.3333ZM7.99996 3.6667C5.79329 3.6667 3.99996 5.46003 3.99996 7.6667C3.99996 9.87337 5.79329 11.6667 7.99996 11.6667C10.2066 11.6667 12 9.87337 12 7.6667C12 5.46003 10.2066 3.6667 7.99996 3.6667ZM7.33329 14.9667H8.66663V13H7.33329V14.9667ZM2.36663 12.36L3.30663 13.3L4.49996 12.1L3.55996 11.16L2.36663 12.36Z"></path>
+							</svg>
+							<svg
+								viewBox="0 0 23 23"
+								className="hidden dark:block fill-current w-[18px] h-[18px]">
+								<g clipPath="url(#clip0_40_125)">
+									<path d="M16.6111 15.855C17.591 15.1394 18.3151 14.1979 18.7723 13.1623C16.4824 13.4065 14.1342 12.4631 12.6795 10.4711C11.2248 8.47905 11.0409 5.95516 11.9705 3.84818C10.8449 3.9685 9.72768 4.37162 8.74781 5.08719C5.7759 7.25747 5.12529 11.4308 7.29558 14.4028C9.46586 17.3747 13.6392 18.0253 16.6111 15.855Z"></path>
+								</g>
+							</svg>
+						</span>
 					</button>
 					<button
 						onClick={() => {

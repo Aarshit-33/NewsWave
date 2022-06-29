@@ -14,18 +14,18 @@ function App() {
 	return (
 		<>
 			<Router>
-				{/* <div className="bg-gray-900 text-white"> */}
-				<Navbar title="NewsWave" />
-				<Routes>
-					<Route path="/" element={<Home />}>
-						<Route path="/" element={<NewsCard />} />
-						<Route path="news" element={<News />} />
-					</Route>
-					<Route path="/about" element={<About />} />
-					<Route path="/contact" element={<Contact />} />
-				</Routes>
-				<Footer title="NewsWave" />
-				{/* </div> */}
+				<div className="h-screen scrollbar-thin rounded scrollbar-thumb-rounded-full scrollbar-track-rounded-full active:scrollbar-thumb-transparent hover:scrollbar-thumb-gray-900 scrollbar-track-transparent dark:active:scrollbar-thumb-transparent dark:hover:scrollbar-thumb-gray-300 dark:scrollbar-track-transparent">
+					<Navbar title="NewsWave" />
+					<Routes>
+						<Route path="/" element={<Home />}>
+							<Route path="/" element={<NewsCard />} />
+							<Route path="news" element={<News />} />
+						</Route>
+						<Route path="/about" element={<About />} />
+						<Route path="/contact" element={<Contact />} />
+					</Routes>
+					<Footer title="NewsWave" />
+				</div>
 			</Router>
 		</>
 	);
