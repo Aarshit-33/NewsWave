@@ -1,54 +1,72 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
+import SuccessAlert from './SuccessAlert';
 
 export default function Contact() {
+	// const [templateParams, setTemplateParams] = useState({
+	// 	from_name: 'James',
+	// 	mail_to: 'aarshitgajjar11@gmail.com', // email address of the sender 2 vistor email
+	// 	message: 'Check this out!',
+	// to_mail: 'aarshitjolapara11@gmail.com', //THIS IS FIXED 1 admin email
+	// reply_to_mail: 'bharatjolapara5@gmail.com', // not required, but nice to have 1
+	// reply_to: 'redskullff99@gmail.com', // not required, but nice to have 2
+	// });
+	const [alert, setAlert] = useState(false);
 	const {
 		register,
-		handleSubmit,
 		getValues,
-		watch,
+		handleSubmit,
 		formState: { errors },
 	} = useForm({
-		mode: 'all',
+		mode: 'onSubmit',
 	});
-	const onSubmit = (data) => {
-		let x = data;
-		console.log('x is : ', x);
-		let y = getValues();
-		console.log('y is :', y);
+	const onSubmit = () => {
+		let data = {
+			from_name: getValues('Name'),
+			mail_user: getValues('Email'),
+			message: getValues('Message'),
+			mail_admin: 'aarshit.dev@gmail.com',
+			my_mail: 'aarshitjolapara11@gmail.com',
+		};
+		mail(data);
 	};
-	console.log('err ', errors);
-	// console.log(watch()); // watch input value by passing the name of it
 
-	const [user, setUser] = useState({
-		name: '',
-		email: '',
-		message: '',
-	});
-
-	const [templateParams, setTemplateParams] = useState({
-		from_name: 'James',
-		email: 'aarshitjolapara@gmail.com',
-		to_mail: 'aarshitjolapara11@gmail.com', //THIS IS FIXED 1 admin email
-		rep_to: 'aarshitgajjar11@gmail.com', // email address of the sender 2 vistor email
-		message: 'Check this out!',
-		reply_to_mail: 'bharatjolapara5@gmail.com', // not required, but nice to have 1
-		reply_to: 'redskullff99@gmail.com', // not required, but nice to have 2
-	});
-
-	const mail = () => {
+	const mail = (data) => {
 		emailjs
 			.send(
 				'default_service',
-				'template_54pf78g',
-				templateParams,
+				'newsWave_templet',
+				data,
 				'ATdvGiTE6OR9JzHNT',
 			)
 			.then(
 				(response) => {
 					console.log('SUCCESS!', response.status, response.text);
-					alert('Mail sent successfully');
+
+					emailjs
+						.send(
+							'default_service',
+							'admin_templet',
+							data,
+							'ATdvGiTE6OR9JzHNT',
+						)
+						.then(
+							(response) => {
+								console.log(
+									'SUCCESS!',
+									response.status,
+									response.text,
+								);
+								setAlert(true);
+								setTimeout(() => {
+									setAlert(false);
+								}, 3000);
+							},
+							(err) => {
+								console.log('FAILED...', err);
+							},
+						);
 				},
 				(err) => {
 					console.log('FAILED...', err);
@@ -60,22 +78,8 @@ export default function Contact() {
 			{/* <h1>Contact</h1> */}
 			<section className="text-gray-600 dark:bg-gray-700 dark:text-gray-300 body-font">
 				<div className="container px-5 py-24 mx-auto">
-					<div className="ease-out duration-150">
-						<button
-							id="triggerElement"
-							type="button"
-							className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-							Hide alert
-						</button>
+					{alert === true && <SuccessAlert />}
 
-						<div
-							id="targetElement"
-							className="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-							role="alert">
-							<span className="font-medium">Info alert!</span>{' '}
-							Change a few things up and try submitting again.
-						</div>
-					</div>
 					<div className="flex flex-col text-center items-center w-full mb-12">
 						<h1 className="sm:text-3xl text-2xl font-bold title-font mb-4 text-gray-900 dark:text-white">
 							Contact Us

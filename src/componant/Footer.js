@@ -114,8 +114,8 @@ export default function Footer(props) {
 							</li>
 						</nav>
 					</div>
-					{/* company info */}
 				</div>
+				{/* company info */}
 				<div className="flex flex-col items-center justify-center">
 					<a className="flex items-center justify-center title-font font-medium text-blue-700 dark:text-cyan-700 md-5">
 						<img src={logo} className="w-10" alt="News" />

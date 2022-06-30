@@ -3,7 +3,11 @@ module.exports = {
 	darkMode: 'class',
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	theme: {
-		extend: {},
+		extend: {
+			colors: {
+				'success-green': '#4CEC2D',
+			},
+		},
 	},
 	plugins: [require('tailwind-scrollbar')],
 	variants: {
