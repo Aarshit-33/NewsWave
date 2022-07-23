@@ -6,8 +6,6 @@ import Home from './componant/Home';
 import About from './componant/About';
 import Contact from './componant/Contact';
 import NewsCard from './componant/NewsCard';
-import News from './componant/News';
-import H from './componant/SuccessAlert';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -20,9 +18,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Home />}>
 							<Route path="/" element={<NewsCard />} />
-							<Route path="news" element={<News />} />
 						</Route>
-						<Route path="/x" element={<H />} />
 						<Route path="/about" element={<About />} />
 						<Route path="/contact" element={<Contact />} />
 					</Routes>
