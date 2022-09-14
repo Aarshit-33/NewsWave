@@ -6,6 +6,8 @@ A Simple React App that provides Daily-News and helps to stay updated with a use
 
 - App is super resposive it will change it's interface according to device's screen and also provides two different themes (Dark/Light). 
 
+- [Click Here](https://newswave.netlify.app/) to Visit NewsWave.
+
 ### ` Some Clicks From App `
 
 <table>
