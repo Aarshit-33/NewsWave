@@ -1,3 +1,70 @@
+# About Project
+
+A Simple React App that provides Daily-News and helps to stay updated with a user-friendly interface it makes easier to read daily news.
+
+- For fetching the data app uses the NewsAPI from google.
+
+- App is super resposive it will change it's interface according to device's screen and also provides two different themes (Dark/Light). 
+
+### ` Some Clicks From App `
+
+<table>
+  <tr>
+    <td>
+      Laptop / PC
+    </td>
+     <td>
+      Mobile
+    </td>
+  </tr>
+  <tr>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://user-images.githubusercontent.com/88767926/190107920-4db43378-95ae-4166-a55c-f2b4fee39e06.png" />
+    </td>
+    <td>
+      <img src="https://user-images.githubusercontent.com/88767926/190108157-c84edf72-ebf2-44a8-996d-d91592fb1a95.png" />
+    </td>
+  </tr>
+    <tr>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+   <tr>
+    <td>
+      Details of News
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://user-images.githubusercontent.com/88767926/190111595-5e86928c-ed30-4c20-b245-85df4138cbe3.png" />
+    </td>
+    <td>
+      <img src="https://user-images.githubusercontent.com/88767926/190109416-f615bc67-0ece-4eca-99d2-0fd771aa928b.png" />
+    </td>
+  </tr>
+</table>
+
+
+##
+
+# How to use Code
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
